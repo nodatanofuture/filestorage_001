@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>일별 가격 그래프</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 10px;
+    }
+    canvas {
+      width: 100% !important;
+      height: auto !important;
+    }
+  </style>
+</head>
+<body>
+  <h2>📈 2025년 7월 일별 가격 변화</h2>
+  <canvas id="priceChart"></canvas>
+
+  <script>
+    const ctx = document.getElementById('priceChart').getContext('2d');
+    const priceChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['07-01', '07-02', '07-03', '07-04', '07-05', '07-06', '07-07'],
+        datasets: [{
+          label: '가격 (원)',
+          data: [1200, 1250, 1230, 1275, 1300, 1280, 1320],
+          borderColor: 'rgb(75, 192, 192)',
+          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+          tension: 0.3,
+          pointRadius: 5,
+          pointHoverRadius: 7,
+          fill: true,
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: false,
+            title: {
+              display: true,
+              text: '가격 (원)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: '날짜'
+            }
+          }
+        },
+        plugins: {
+          tooltip: {
+            mode: 'index',
+            intersect: false,
+          },
+          legend: {
+            display: true,
+            position: 'top',
+          }
+        },
+        interaction: {
+          mode: 'nearest',
+          axis: 'x',
+          intersect: false
+        }
+      }
+    });
+  </script>
+</body>
+</html>
